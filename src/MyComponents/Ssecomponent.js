@@ -14,6 +14,11 @@ const SSEComponent = () => {
             setLoading(false);
         };
 
+        eventSource.onerror = () => {
+            console.error('EventSource failed.');
+            setLoading(true);
+        };
+
         return () => {
             eventSource.close();
         };
