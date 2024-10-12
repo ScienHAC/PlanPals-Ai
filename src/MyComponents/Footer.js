@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Fotter = () => {
+const Footer = () => {
     return (
         <>
             <footer className="bg-light text-center">
@@ -12,4 +12,4 @@ const Fotter = () => {
     )
 }
 
-export default Fotter
+export default Footer
