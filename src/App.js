@@ -3,17 +3,21 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import SSEComponent from './MyComponents/Ssecomponent';
 import Footer from './MyComponents/Footer';
 import Header from './MyComponents/Header';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
 const App = () => {
   return (
     <>
       <Router>
         {/* <SSEComponent /> */}
-        <p>WElcome to PlanPals Ai</p>
         <Header />
         <Routes>
           <Route path="*" element={<h1>Sorry Page Not Found!!!</h1>} />
-          <Route path="/" element={<h1>Home!!</h1>} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<h1>About swag!!</h1>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
         <Footer />
       </Router>

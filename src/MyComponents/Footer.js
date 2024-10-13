@@ -5,7 +5,7 @@ const Footer = () => {
         <>
             <footer className="bg-light text-center">
                 <p>
-                    © 2021 MERN App. All Rights Reserved | Terms and Conditions
+                    © 2024 PlanPals Ai All Right Reserved
                 </p>
             </footer>
         </>
