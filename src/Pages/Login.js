@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../MyComponents/AuthContext'; // Import useAuth from AuthContext
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+    const navigate = useNavigate();
     const { setIsAuthenticated, setUser } = useAuth(); // Use auth context
     const [formData, setFormData] = useState({
         email: '',
@@ -37,6 +38,7 @@ const Login = () => {
                 setIsAuthenticated(true); // Update auth state to true
                 setUser(result.user); // Set user data from the backend
                 setMessage('Login successful!'); // Set success message
+                navigate('/', { replace: true });
             } else {
                 setMessage(result.message || 'Login failed. Please try again.');
             }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../MyComponents/AuthContext'; // Import useAuth
-
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
+    const navigate = useNavigate();
     const { setIsAuthenticated, setUser } = useAuth(); // Use auth context
     const [formData, setFormData] = useState({
         name: '',
@@ -36,6 +37,7 @@ const Signup = () => {
                 setIsAuthenticated(true); // Set auth state to true
                 setUser(result.user); // Set user data
                 setMessage('Signup successful!');
+                navigate('/', { replace: true });
             } else {
                 setMessage(result.message || 'Signup failed. Please try again.');
             }
