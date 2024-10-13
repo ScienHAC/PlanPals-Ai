@@ -1,17 +1,29 @@
 import React from 'react'
 // import { Link } from 'react-router-dom'
+import { useAuth } from '../MyComponents/AuthContext';
 const Home = () => {
+    const { isAuthenticated } = useAuth();
     return (
-        <div id='Table_data'>
-            <button>Create</button>
-            <table>
-                <thead>
-                    <tr id='Main'>
-                        <th>mathematics</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+        <>
+            {isAuthenticated ? (
+                <>
+                    <div id='Table_data'>
+                        <button>Create</button>
+                        <table>
+                            <thead>
+                                <tr id='Main'>
+                                    <th>mathematics</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <h1>PlanPals.ai</h1>
+                </>
+            )}
+        </>
     )
 }
 
