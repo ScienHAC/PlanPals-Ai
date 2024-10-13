@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../MyComponents/AuthContext';
+import Logout from '../Pages/Logout';
 const Header = () => {
+    const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -29,8 +32,16 @@ const Header = () => {
                             <Link className="nav-link disabled" to="google.com">Disabled</Link>
                         </li>
                     </ul>
-                    <button className="btn btn-outline-success my-2 mx-2 my-sm-0" id="Login_btn" onClick={handleLogin}>Login</button>
-                    <button className="btn btn-outline-success my-2 my-sm-0" id="Signup_btn" onClick={handleSignup}>Sign Up</button>
+                    {isAuthenticated ? (
+                        <>
+                            <Logout />
+                        </>
+                    ) : (
+                        <>
+                            <button className="btn btn-outline-success my-2 mx-2 my-sm-0" id="Login_btn" onClick={handleLogin}>Login</button>
+                            <button className="btn btn-outline-success my-2 my-sm-0" id="Signup_btn" onClick={handleSignup}>Sign Up</button>
+                        </>
+                    )}
                 </div>
             </nav>
         </>

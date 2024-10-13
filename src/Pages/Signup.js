@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import { useAuth } from '../MyComponents/AuthContext'; // Import useAuth
 
 const Signup = () => {
+    const { setIsAuthenticated, setUser } = useAuth(); // Use auth context
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
     });
 
-    // State to store the message from the backend
     const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
@@ -20,39 +21,32 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Send POST request to backend
             const response = await fetch('http://localhost:5000/api/auth/signup', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
+                credentials: 'include', // Include cookies
             });
 
-            const result = await response.json(); // Parse the response JSON
+            const result = await response.json();
 
             if (response.ok) {
-                // If the request was successful, update the message state
-                setMessage(result.message);  // Set the success message from backend
+                setIsAuthenticated(true); // Set auth state to true
+                setUser(result.user); // Set user data
+                setMessage('Signup successful!');
             } else {
-                // Handle error messages from backend
                 setMessage(result.message || 'Signup failed. Please try again.');
             }
 
-            // Clear form fields after submission
-            setFormData({
-                name: '',
-                email: '',
-                password: ''
-            });
-
+            setFormData({ name: '', email: '', password: '' }); // Clear form
         } catch (error) {
             console.error('Error:', error);
-            setMessage('An error occurred. Please try again.'); // Set a generic error message
+            setMessage('An error occurred. Please try again.');
         }
-        setTimeout(() => {
-            setMessage('');
-        }, 2000);
+
+        setTimeout(() => setMessage(''), 2000); // Clear message after 2 seconds
     };
 
     return (
@@ -92,7 +86,6 @@ const Signup = () => {
                 <button type="submit">Sign Up</button>
             </form>
 
-            {/* Display the message */}
             {message && <p>{message}</p>}
         </div>
     );
