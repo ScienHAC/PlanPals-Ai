@@ -41,7 +41,6 @@ const Home = ({ setValidProjects }) => {
 
     // Fetch projects with useCallback to avoid re-creating the function
     useEffect(() => {
-        alert(process.env.REACT_APP_hostURL);
         const eventSource = new EventSource(`${process.env.REACT_APP_hostURL}/api/projectdata`, {
             withCredentials: true,
         });
