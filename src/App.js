@@ -44,7 +44,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const eventSource = new EventSource(`${process.env.hostURL}/api/projectdata`, {
+      const eventSource = new EventSource(`${process.env.REACT_APP_hostURL}/api/projectdata`, {
         withCredentials: true,
       });
       eventSource.onmessage = (event) => {

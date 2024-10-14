@@ -23,7 +23,7 @@ const Login = () => {
         e.preventDefault();
         setLoading(true); // Start loading
         try {
-            const response = await fetch(`${process.env.hostURL}/api/auth/login`, {
+            const response = await fetch(`${process.env.REACT_APP_hostURL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
