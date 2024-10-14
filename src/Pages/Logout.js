@@ -11,7 +11,7 @@ const Logout = () => {
         e.preventDefault();
         try {
             // Send POST request to backend for logout
-            const response = await fetch('http://localhost:5000/api/auth/logout', {
+            const response = await fetch(`${process.env.hostURL}/api/auth/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

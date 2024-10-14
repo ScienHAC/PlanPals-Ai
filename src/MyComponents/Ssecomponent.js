@@ -5,7 +5,7 @@ const SSEComponent = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const eventSource = new EventSource('http://localhost:5000/api/events');
+        const eventSource = new EventSource(`${process.env.hostURL}/api/events`);
 
         eventSource.onmessage = (event) => {
             const data = event.data;

@@ -20,7 +20,7 @@ const Home = ({ setValidProjects }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch('http://localhost:5000/user-name', {
+                const response = await fetch(`${process.env.hostURL}/user-name`, {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
@@ -41,7 +41,7 @@ const Home = ({ setValidProjects }) => {
 
     // Fetch projects with useCallback to avoid re-creating the function
     useEffect(() => {
-        const eventSource = new EventSource('http://localhost:5000/api/projectdata', {
+        const eventSource = new EventSource(`${process.env.hostURL}/api/projectdata`, {
             withCredentials: true,
         });
 
@@ -74,7 +74,7 @@ const Home = ({ setValidProjects }) => {
         setShowInput(false);
 
         try {
-            const response = await fetch('http://localhost:5000/api/userproject', {
+            const response = await fetch(`${process.env.hostURL}/api/userproject`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ uri: newProject }),
