@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
             {isAuthenticated ? (
                 children
             ) : (
-                <h1>You are not logged in</h1>
+                <h1>Sorry, Page Not Found!!!</h1>
             )}
         </>
     )

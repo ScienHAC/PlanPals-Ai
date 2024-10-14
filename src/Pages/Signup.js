@@ -85,7 +85,7 @@ const Signup = () => {
                         required
                     />
                 </div>
-                <button type="submit">Sign Up</button>
+                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
             </form>
 
             {message && <p>{message}</p>}
